@@ -1,5 +1,7 @@
 <% @datasets.each do |dataset| %>
   <div>
-    <%= image_tag dataset.image, height: "100" %>
+    <%= link_to dataset_path(dataset) do %>
+      <%= image_tag dataset.image, height: "100" %>
+    <% end %>
   </div>
 <% end %>
