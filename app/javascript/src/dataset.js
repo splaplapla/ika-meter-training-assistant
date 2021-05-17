@@ -1,4 +1,4 @@
-import Jcrop from "jquery-jcrop"
+import Jcrop from "jcrop"
 
 $(function() {
 
@@ -16,15 +16,9 @@ $(function() {
   var onDblClick = function() {
     console.log('onDblClickされました');
   }
-
-  $('#target_dataset').Jcrop({
-    shadeColor: 'red',
-    onSelect: hasSelected,
-    // onChange: hasChanged,
-    onRelease: hasReleased,
-    onDblClick: onDblClick,
-    canDrag: true,
-    allowMove: true,
-    multi: true,
-  });
+  Jcrop.attach('target_dataset', {
+  shadeColor: 'red',
+  multi: true
+  })
+  // $('#target_dataset').Jcrop({ });
 });
