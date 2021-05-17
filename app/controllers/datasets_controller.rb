@@ -1,4 +1,8 @@
 class DatasetsController < ApplicationController
+  def index
+    @datasets = Dataset.all
+  end
+
   def new
     @dataset = Dataset.new
   end
