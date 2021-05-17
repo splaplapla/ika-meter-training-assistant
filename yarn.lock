@@ -3732,6 +3732,16 @@ jest-worker@^26.5.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
+jquery-jcrop@^0.9.15:
+  version "0.9.15"
+  resolved "https://registry.yarnpkg.com/jquery-jcrop/-/jquery-jcrop-0.9.15.tgz#490f216f922f77a7e6c9be6c1d5d69582f414964"
+  integrity sha512-425X88jEoWojYPS5YhZciEW83z4J/TLPh9gvRfftroUBDr70Er58kerD1kY+cT/z8Ys5/VEkUZ9AA4tFwqgY+w==
+
+jquery@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
+  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
+
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
