@@ -13,12 +13,16 @@ $(function() {
   var hasReleased = function() {
     console.log('リリースされました');
   };
+  var onDblClick = function() {
+    console.log('onDblClickされました');
+  }
 
   $('#target_dataset').Jcrop({
     shadeColor: 'red',
     onSelect: hasSelected,
-    onChange: hasChanged,
+    // onChange: hasChanged,
     onRelease: hasReleased,
+    onDblClick: onDblClick,
     canDrag: true,
     allowMove: true,
     multi: true,
