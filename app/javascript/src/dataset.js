@@ -1,6 +1,7 @@
 import Jcrop from "jquery-jcrop"
 
 $(function() {
+
   var hasSelected = function() {
     console.log('選択されました')
   };
@@ -14,8 +15,12 @@ $(function() {
   };
 
   $('#target_dataset').Jcrop({
+    shadeColor: 'red',
     onSelect: hasSelected,
     onChange: hasChanged,
-    onRelease: hasReleased
+    onRelease: hasReleased,
+    canDrag: true,
+    allowMove: true,
+    multi: true,
   });
 });
