@@ -1,0 +1,2 @@
+class RoiTemplate < ApplicationRecord
+end
