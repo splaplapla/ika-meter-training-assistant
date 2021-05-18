@@ -17,9 +17,20 @@ function loadJcrop(points) {
 };
 
 function saveCrops() {
-  Array.from(jcrop.crops).each(function(crop) {
-    // cropをparamsに変換する
+  const positionParams = Array.from(jcrop.crops).map(function(crop) {
+      return [crop.pos.x, crop.pos.y, crop.pos.w, crop.pos.h]
   })
+  const path = '<%= "/datasets/#{@dataset.id}/dataset_positions" %>'
+  const XHR = new XMLHttpRequest(), fd = new FormData();
+  fd.append("positions", positionParams)
+  XHR.addEventListener('load', function(event) {
+    alert('Yeah! Data sent and response loaded.');
+  });
+  XHR.addEventListener('error', function(event) {
+    alert('Oups! Something goes wrong.');
+  });
+  XHR.open('POST', path);
+  XHR.send(fd);
   return true;
 }
 </script>
