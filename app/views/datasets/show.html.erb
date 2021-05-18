@@ -1,7 +1,16 @@
 <% if @dataset.image.attached? %>
   <%= image_tag @dataset.image, id: "target_dataset" %>
+  <a href="#" onclick="saveCrops()">保存する</a>
 <% else %>
 <% end %>
 
 <%= render "jcrop" %>
 <%= render "js" %>
+
+<script>
+  $(function() {
+    loadJcrop(
+     JSON.parse('<%= @dataset.dataset_positions.map(&:point).to_json.html_safe %>')
+    );
+  })
+</script>

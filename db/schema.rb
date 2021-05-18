@@ -42,13 +42,13 @@ ActiveRecord::Schema.define(version: 2021_05_17_144939) do
 
   create_table "dataset_positions", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "dataset_id", null: false
-    t.integer "x"
-    t.integer "y"
-    t.integer "width"
-    t.integer "height"
+    t.integer "x", null: false
+    t.integer "y", null: false
+    t.integer "width", null: false
+    t.integer "height", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["dataset_id"], name: "index_dataset_positions_on_dataset_id", unique: true
+    t.index ["dataset_id"], name: "index_dataset_positions_on_dataset_id"
   end
 
   create_table "datasets", charset: "utf8mb4", force: :cascade do |t|

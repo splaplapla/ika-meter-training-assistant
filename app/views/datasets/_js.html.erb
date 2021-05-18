@@ -1,8 +1,25 @@
 <script>
-var jcrop = Jcrop.attach('target_dataset', {
+jcrop = Jcrop.attach('target_dataset', {
+  multiMin: 0,
   multi: true
 })
-const rect = Jcrop.Rect.create(100,0,100,100);
-const options = {};
-jcrop.newWidget(rect,options);
+
+function loadJcrop(points) {
+  const options = {};
+  let rect = null; 
+
+  points.forEach(function(point) {
+    jcrop.newWidget(
+      Jcrop.Rect.create(point.x, point.y, point.width, point.height),
+      options
+    );
+  })
+};
+
+function saveCrops() {
+  Array.from(jcrop.crops).each(function(crop) {
+    // cropをparamsに変換する
+  })
+  return true;
+}
 </script>
