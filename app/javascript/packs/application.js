@@ -6,10 +6,7 @@
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import 'jquery'
-import Jcrop from "jcrop"
-
-import { getJcrop } from "../src/dataset"
+import "../src/dataset"
 
 Rails.start()
 ActiveStorage.start()

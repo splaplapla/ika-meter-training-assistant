@@ -26,7 +26,3 @@ $(function() {
   const options = {};
   jcrop.newWidget(rect,options);
 });
-
-export function getJcrop() {
-  return Jcrop.attach('target_dataset');
-}
