@@ -6,7 +6,7 @@
 import Rails from "@rails/ujs"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
-import "../src/dataset"
+// import "../src/dataset"
 
 Rails.start()
 ActiveStorage.start()
