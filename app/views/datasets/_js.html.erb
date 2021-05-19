@@ -24,13 +24,14 @@ function saveCrops() {
   const XHR = new XMLHttpRequest(), fd = new FormData();
   fd.append("positions", positionParams)
   XHR.addEventListener('load', function(event) {
-    alert('Yeah! Data sent and response loaded.');
+    // alert('保存に成功しました。');
   });
   XHR.addEventListener('error', function(event) {
-    alert('Oups! Something goes wrong.');
+    alert('保存に失敗しました');
   });
   XHR.open('POST', path);
   XHR.send(fd);
-  return true;
+    window.location
+  return false;
 }
 </script>

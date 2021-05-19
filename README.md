@@ -7,6 +7,7 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
   * https://github.com/webpack-contrib/expose-loader
 
 ## 運用
+データはリポジトリに全部保管するのでダンプする
 ```
 mysqldump -uroot training_assistant_development > db/dump.sql
 ```
