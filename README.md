@@ -10,3 +10,18 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
 ```
 mysqldump -uroot training_assistant_development > db/dump.sql
 ```
+
+画像を取り込む
+
+```
+Dir.glob("/Users/koji/src/ika-meter-traincascade/bin/positive/**/*.jpg").map.with_index(1) do |filename, index|
+  file = File.open(filename)
+  digest = Digest::MD5.hexdigest(file.read)
+  if Dataset.find_by(digest: digest)
+    Rails.logger.warn "skip!!!!!!!!!"
+  else
+    name = "#{Time.now.tap { |x| break "#{x.to_i}#{x.usec}" }}.jpg"
+    Dataset.create(image: { io: file, filename: name }, digest: digest )
+  end
+end
+```

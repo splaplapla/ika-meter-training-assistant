@@ -1,13 +1,15 @@
 class Dataset < ApplicationRecord
+  after_create_commit :save_digest
+
   has_one_attached :image
 
   has_many :dataset_positions, dependent: :destroy
 
-  before_save do
-    save_digest
-  end
-
   def save_digest
-    self.digest = Digest::MD5.hexdigest(self.image.attachment.download)
+    return if digest.present?
+
+    self.image.blob.open do |f|
+      update_columns(digest: Digest::MD5.hexdigest(f.read))
+    end
   end
 end
