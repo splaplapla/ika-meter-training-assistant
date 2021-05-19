@@ -1,7 +1,18 @@
 <% @datasets.each do |dataset| %>
-  <div>
-    <%= link_to dataset_path(dataset) do %>
-      <%= image_tag dataset.image, height: "100" %>
-    <% end %>
-  </div>
+  <table border="1">
+    <tr>
+      <th></th>
+      <th>入力済みか</th>
+    </tr>
+    <tr>
+      <td>
+        <%= link_to dataset_path(dataset) do %>
+          <%= image_tag dataset.image, height: "100" %>
+        <% end %>
+      </td>
+      <td>
+        <%= dataset.has_dataset_positions? ? "あり" : "なし" %>
+      </td>
+    </tr>
+  </table>
 <% end %>

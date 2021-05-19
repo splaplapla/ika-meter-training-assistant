@@ -12,4 +12,8 @@ class Dataset < ApplicationRecord
       update_columns(digest: Digest::MD5.hexdigest(f.read))
     end
   end
+
+  def has_dataset_positions?
+    dataset_positions.size > 0
+  end
 end

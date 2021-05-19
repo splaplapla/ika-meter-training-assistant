@@ -1,6 +1,6 @@
 class DatasetsController < ApplicationController
   def index
-    @datasets = Dataset.all
+    @datasets = Dataset.includes(:dataset_positions)
   end
 
   def new
