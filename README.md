@@ -21,6 +21,7 @@ Dir.glob("/Users/koji/src/ika-meter-traincascade/bin/positive/**/*.jpg").map.wit
     Rails.logger.warn "skip!!!!!!!!!"
   else
     name = "#{Time.now.tap { |x| break "#{x.to_i}#{x.usec}" }}.jpg"
+    file.rewind
     Dataset.create(image: { io: file, filename: name }, digest: digest )
   end
 end
