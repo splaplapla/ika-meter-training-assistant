@@ -5,6 +5,8 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
 * webpackerを後で頑張る
   * https://patorash.hatenablog.com/entry/2020/07/02/165320
   * https://github.com/webpack-contrib/expose-loader
+* 出力するサンプルデータをイカメーターに絞る
+* ika-meter-traincascade の変更を取り込む
 
 ## 運用
 ### データはリポジトリに全部保管するのでダンプする
@@ -46,3 +48,4 @@ end
 
 File.write "/Users/koji/src/ika-meter-traincascade/positive.dat", files.join("\n")
 ```
+
