@@ -25,13 +25,13 @@ function saveCrops() {
   fd.append("positions", positionParams)
   XHR.addEventListener('load', function(event) {
     // alert('保存に成功しました。');
+    window.location = "/datasets";
   });
   XHR.addEventListener('error', function(event) {
     alert('保存に失敗しました');
   });
   XHR.open('POST', path);
   XHR.send(fd);
-    window.location
   return false;
 }
 </script>
