@@ -41,7 +41,7 @@ Dataset.joins(:dataset_positions).distinct.each.with_index(1) do |dataset, index
   abs_file_path = "/Users/koji/src/ika-meter-traincascade/data/pos/#{index}.jpg"
   FileUtils.cp org_filepath, abs_file_path
   metadata = dataset.dataset_positions.map(&:output_for_dat).join " "
-  files << "#{abs_file_path} #{metadata}"
+  files << "#{abs_file_path} #{dataset.dataset_positions.size} #{metadata}"
 end
 
 File.write "/Users/koji/src/ika-meter-traincascade/positive.dat", files.join("\n")
