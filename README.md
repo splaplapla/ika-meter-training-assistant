@@ -33,6 +33,8 @@ end
 /Users/koji/src/ika-meter-traincascade
 
 ```ruby
+Dir.glob("/Users/koji/src/ika-meter-traincascade/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
+
 files = []
 Dataset.joins(:dataset_positions).distinct.each.with_index(1) do |dataset, index|
   org_filepath = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
@@ -42,5 +44,5 @@ Dataset.joins(:dataset_positions).distinct.each.with_index(1) do |dataset, index
   files << "#{abs_file_path} #{metadata}"
 end
 
-File.write "/Users/koji/src/ika-meter-traincascade/src/positive.dat", files.join("\n")
+File.write "/Users/koji/src/ika-meter-traincascade/positive.dat", files.join("\n")
 ```
