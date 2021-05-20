@@ -19,6 +19,10 @@ class DatasetPosition < ApplicationRecord
     height
   end
 
+  def output_for_dat
+    "#{x} #{y} #{w} #{h}"
+  end
+
   def too_small?
     width < 30 || height < 30
   end

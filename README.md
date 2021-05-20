@@ -7,14 +7,14 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
   * https://github.com/webpack-contrib/expose-loader
 
 ## 運用
-データはリポジトリに全部保管するのでダンプする
-```
+### データはリポジトリに全部保管するのでダンプする
+```shell
 mysqldump -uroot training_assistant_development > db/dump.sql
 ```
 
-画像を取り込む
+### 画像を取り込む
 
-```
+```ruby
 Dir.glob("/Users/koji/src/ika-meter-traincascade/bin/positive/**/*.jpg").map.with_index(1) do |filename, index|
   file = File.open(filename)
   digest = Digest::MD5.hexdigest(file.read)
@@ -26,4 +26,21 @@ Dir.glob("/Users/koji/src/ika-meter-traincascade/bin/positive/**/*.jpg").map.wit
     Dataset.create(image: { io: file, filename: name }, digest: digest )
   end
 end
+```
+
+
+### opencv_createsamples に食わせるために出力する
+/Users/koji/src/ika-meter-traincascade
+
+```ruby
+files = []
+Dataset.joins(:dataset_positions).distinct.each.with_index(1) do |dataset, index|
+  org_filepath = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
+  abs_file_path = "/Users/koji/src/ika-meter-traincascade/data/pos/#{index}.jpg"
+  FileUtils.cp org_filepath, abs_file_path
+  metadata = dataset.dataset_positions.map(&:output_for_dat).join " "
+  files << "#{abs_file_path} #{metadata}"
+end
+
+File.write "/Users/koji/src/ika-meter-traincascade/src/positive.dat", files.join("\n")
 ```
