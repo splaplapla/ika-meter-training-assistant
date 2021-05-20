@@ -2,12 +2,13 @@ require "fileutils"
 
 class Build
   def self.execute
+    FileUtils.mkdir_p "tmp/models"
     build_negative
     build_positive
   end
 
   def self.build_positive
-    FileUtils.rm_rf "./tmp/positive.dat"
+    FileUtils.rm_rf "./positive.dat"
     FileUtils.mkdir_p "tmp/data/neg"
     Dir.glob("tmp/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
 
@@ -20,22 +21,21 @@ class Build
       files << "#{abs_file_path} #{dataset.dataset_positions.size} #{metadata}"
     end
 
-    File.write "tmp/positive.dat", files.join("\n")
+    File.write "positive.dat", files.join("\n")
   end
 
   def self.build_negative
     # cleanup
-    FileUtils.rm_rf "./tmp/negative.dat"
+    FileUtils.rm_rf "./negative.dat"
     FileUtils.mkdir_p "tmp/data/pos"
     Dir.glob("./tmp/data/neg/*.jpg").map { |filepath| FileUtils.rm filepath }
 
     negative_files = []
 
-    Dir.glob("tmp/negative/**/*.jpg").map.with_index(1) do |org_filepath, index|
-      filepath = "#{Rails.root}/tmp/data/neg/#{index}.jpg"
-      FileUtils.cp org_filepath, "./#{filepath}"
-      negative_files << "#{Dir.pwd}/#{filepath}"
+    Dir.glob("#{Rails.root}/lib/assets/negative/**/*.jpg").map.with_index(1) do |org_filepath, index|
+     # FileUtils.cp org_filepath, filepath
+      negative_files << org_filepath
     end
-    File.write "tmp/negative.dat", negative_files.join("\n")
+    File.write "negative.dat", negative_files.join("\n")
   end
 end
