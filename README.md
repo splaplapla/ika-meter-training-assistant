@@ -35,17 +35,9 @@ end
 /Users/koji/src/ika-meter-traincascade
 
 ```ruby
-Dir.glob("/Users/koji/src/ika-meter-traincascade/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
-
-files = []
-Dataset.joins(:dataset_positions).distinct.each.with_index(1) do |dataset, index|
-  org_filepath = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
-  abs_file_path = "/Users/koji/src/ika-meter-traincascade/data/pos/#{index}.jpg"
-  FileUtils.cp org_filepath, abs_file_path
-  metadata = dataset.dataset_positions.map(&:output_for_dat).join " "
-  files << "#{abs_file_path} #{dataset.dataset_positions.size} #{metadata}"
-end
-
-File.write "/Users/koji/src/ika-meter-traincascade/positive.dat", files.join("\n")
+# DBからpositive.datを生成
+Build.execute
+# トレーニング
+Create.execute
 ```
 
