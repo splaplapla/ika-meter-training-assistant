@@ -19,13 +19,13 @@ class DatasetPosition < ApplicationRecord
     height
   end
 
-  def output_for_dat(x: , y: )
+  def output_for_dat(x: )
     "#{x} #{y} #{w} #{h}"
   end
 
   def output_for_dat_and_ika_meter_offset
     x_offset = [x, 505].min
-    output_for_dat(x: x - x_offset, y: y - 21)
+    output_for_dat(x: x - x_offset)
   end
 
   def too_small?
