@@ -7,23 +7,6 @@ class Build
     build_positive
   end
 
-  def self.build_positive
-    FileUtils.rm_rf "./positive.dat"
-    FileUtils.mkdir_p "tmp/data/neg"
-    Dir.glob("tmp/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
-
-    files = []
-    Dataset.joins(:dataset_positions).distinct.each.with_index(1) do |dataset, index|
-      org_filepath = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
-      abs_file_path = "#{Rails.root}/tmp/data/pos/#{index}.jpg"
-      FileUtils.cp org_filepath, abs_file_path
-      metadata = dataset.dataset_positions.map(&:output_for_dat).join " "
-      files << "#{abs_file_path} #{dataset.dataset_positions.size} #{metadata}"
-    end
-
-    File.write "positive.dat", files.join("\n")
-  end
-
   def self.build_negative
     # cleanup
     FileUtils.rm_rf "./negative.dat"
@@ -37,5 +20,25 @@ class Build
       negative_files << org_filepath
     end
     File.write "negative.dat", negative_files.join("\n")
+  end
+
+  def self.build_positive
+    FileUtils.rm_rf "./positive.dat"
+    FileUtils.mkdir_p "tmp/data/neg"
+    Dir.glob("tmp/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
+
+    files = []
+    Dataset.joins(:dataset_positions).distinct.each.with_index(1) do |dataset, index|
+      org_file_path = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
+      mat = OpenCV::CvMat.load(org_file_path)
+      mat = Crop.ikatako_meter(mat)
+      dist_file_path = "#{Rails.root}/tmp/data/pos/d#{dataset.id}.jpg"
+      mat.save dist_file_path
+      # FileUtils.cp org_file_path, dist_file_path
+      metadata = dataset.dataset_positions.map(&:output_for_dat_and_ika_meter_offset)
+      files << "#{dist_file_path} #{dataset.dataset_positions.size} #{metadata.join(" ")}"
+    end
+
+    File.write "positive.dat", files.join("\n")
   end
 end

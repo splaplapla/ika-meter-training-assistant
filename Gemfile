@@ -12,6 +12,7 @@ gem 'image_processing', '~> 1.2'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'mysql2'
 gem 'pry'
+gem 'ruby-opencv', require: 'opencv' # cropする部分でしか使っていない
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
