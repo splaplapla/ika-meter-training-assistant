@@ -35,8 +35,8 @@ end
 
 ```ruby
 # DBからpositive.datを生成
-Build.execute
+be rails r Build.execute
 
 # トレーニング
-Create.execute
+be rails r Create.execute | sh
 ```
