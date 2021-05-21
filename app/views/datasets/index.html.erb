@@ -1,9 +1,9 @@
-<% @datasets.each do |dataset| %>
-  <table border="1">
-    <tr>
-      <th></th>
-      <th>入力済みか</th>
-    </tr>
+<table border="1">
+  <tr>
+    <th></th>
+    <th>入力済みか</th>
+  </tr>
+  <% @datasets.each do |dataset| %>
     <tr>
       <td>
         <%= link_to dataset_path(dataset) do %>
@@ -14,5 +14,5 @@
         <%= dataset.has_dataset_positions? ? "あり" : "なし" %>
       </td>
     </tr>
-  </table>
-<% end %>
+  <% end %>
+</table>
