@@ -17,7 +17,7 @@ mysqldump -uroot training_assistant_development > db/dump.sql
 ### 画像を取り込む
 
 ```ruby
-Dir.glob("/Users/koji/src/ika-meter-traincascade/bin/positive/**/*.jpg").map.with_index(1) do |filename, index|
+Dir.glob("#{Rails.root}/lib/assets/20210521/*jpg").map.with_index(1) do |filename, index|
   file = File.open(filename)
   digest = Digest::MD5.hexdigest(file.read)
   if Dataset.find_by(digest: digest)
@@ -29,7 +29,6 @@ Dir.glob("/Users/koji/src/ika-meter-traincascade/bin/positive/**/*.jpg").map.wit
   end
 end
 ```
-
 
 ### opencv_createsamples に食わせるために出力する
 /Users/koji/src/ika-meter-traincascade
