@@ -10,7 +10,7 @@
   <% @datasets.each do |dataset| %>
     <tr>
       <td>
-        <%= link_to dataset_path(dataset) do %>
+        <%= link_to dataset_path(dataset, dataset_positions: params[:dataset_positions]) do %>
           <%= image_tag dataset.image, height: "100" %>
         <% end %>
       </td>
