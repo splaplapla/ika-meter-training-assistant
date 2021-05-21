@@ -1,6 +1,11 @@
 class DatasetsController < ApplicationController
   def index
-    @datasets = Dataset.includes(:dataset_positions)
+    @datasets = Dataset.includes(:dataset_positions).distinct
+    if params[:dataset_positions] == "has"
+      @datasets = @datasets.joins(:dataset_positions)
+    elsif params[:dataset_positions] == "none"
+      @datasets = @datasets.where(dataset_positions: { id: nil })
+    end
   end
 
   def new

@@ -1,3 +1,7 @@
+<%= link_to "全部", datasets_path %>
+<%= link_to "入力済み", datasets_path(dataset_positions: :has) %>
+<%= link_to "未入力", datasets_path(dataset_positions: :none) %>
+
 <table border="1">
   <tr>
     <th></th>
