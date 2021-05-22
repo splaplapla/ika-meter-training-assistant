@@ -1,6 +1,6 @@
 class DatasetsController < ApplicationController
   def index
-    @datasets = Dataset.includes(:dataset_positions).distinct.where(ignore: false)
+    @datasets = Dataset.includes(:dataset_positions, :dataset_quality).with_attached_image.distinct.where(ignore: false)
     if params[:dataset_positions] == "has"
       @datasets = @datasets.joins(:dataset_positions)
     elsif params[:dataset_positions] == "none"
