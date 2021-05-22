@@ -24,7 +24,7 @@ class DatasetPosition < ApplicationRecord
   end
 
   def output_for_dat_and_ika_meter_offset
-    x_offset = [x, 505].min
+    x_offset = [x, 450].min
     output_for_dat(x: x - x_offset)
   end
 
