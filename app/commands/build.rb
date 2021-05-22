@@ -35,7 +35,11 @@ class Build
     files = []
     # .where(dataset_qualities: { status: :normal })
     # 品質をカットしてデータを出力できる
-    Dataset.where(ignore: false).joins(:dataset_positions, :dataset_quality).includes(:dataset_positions).with_attached_image.distinct.each.with_index(1) do |dataset, index|
+    datasets = Dataset.where(ignore: false).joins(:dataset_positions, :dataset_quality).includes(:dataset_positions).with_attached_image.distinct
+    if ENV["IGNORE_LOW_QUOLITIES"]
+      datasets = datasets.where(dataset_qualities: { status: :normal })
+    end
+    datasets.each.with_index(1) do |dataset, index|
       org_file_path = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
       mat = OpenCV::CvMat.load(org_file_path)
       mat = Crop.ikatako_meter(mat)
