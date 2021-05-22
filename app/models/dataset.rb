@@ -5,7 +5,6 @@ class Dataset < ApplicationRecord
   has_many :dataset_temporary_positions, dependent: :destroy
 
   has_one :dataset_quality, dependent: :destroy
-  has_one :dataset_temp, dependent: :destroy
 
   after_create_commit :save_digest
   before_create :prepare_dataset_quality
