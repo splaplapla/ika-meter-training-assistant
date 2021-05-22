@@ -8,7 +8,7 @@ class Dataset < ApplicationRecord
   has_one :dataset_temp, dependent: :destroy
 
   after_create_commit :save_digest
-  before_create :build_dataset_quality
+  before_create :prepare_dataset_quality
 
   def has_dataset_positions?
     dataset_positions.size > 0
@@ -24,7 +24,7 @@ class Dataset < ApplicationRecord
     end
   end
 
-  def build_dataset_quality
+  def prepare_dataset_quality
     build_dataset_quality(status: :normal)
   end
 end

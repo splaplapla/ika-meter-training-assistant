@@ -40,7 +40,7 @@ end
 ### モデルを使って画像を取り込む
 ```ruby
 detector = OpenCV::CvHaarClassifierCascade::load("/Users/koji/src/ika-meter-training-assistant/tmp/model/cascade.xml")
-Dir.glob("#{Rails.root}/lib/assets/2/*jpg").map.with_index(1).first do |filename, index|
+Dir.glob("#{Rails.root}/lib/assets/2/*jpg").map.with_index(1) do |filename, index|
   file = File.open(filename)
   digest = Digest::MD5.hexdigest(file.read)
   if Dataset.find_by(digest: digest)
