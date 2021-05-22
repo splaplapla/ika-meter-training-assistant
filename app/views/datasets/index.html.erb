@@ -6,6 +6,7 @@
   <tr>
     <th></th>
     <th>入力済みか</th>
+    <th>品質</th>
   </tr>
   <% @datasets.each do |dataset| %>
     <tr>
@@ -17,6 +18,12 @@
       <td>
         <%= dataset.has_dataset_positions? ? "あり" : "なし" %>
       </td>
+      <td>
+        <%= dataset.dataset_quality.status %>
+      </td>
     </tr>
   <% end %>
 </table>
+
+<script>
+</script>

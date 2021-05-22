@@ -33,7 +33,7 @@ class Build
     Dir.glob("tmp/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
 
     files = []
-    Dataset.where(ignore: false).joins(:dataset_positions).includes(:dataset_positions).with_attached_image.distinct.each.with_index(1) do |dataset, index|
+    Dataset.where(ignore: false).joins(:dataset_positions).includes(:dataset_positions, :dataset_quality).with_attached_image.distinct.each.with_index(1) do |dataset, index|
       org_file_path = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
       mat = OpenCV::CvMat.load(org_file_path)
       mat = Crop.ikatako_meter(mat)

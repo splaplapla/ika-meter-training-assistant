@@ -2,6 +2,7 @@ class Dataset < ApplicationRecord
   has_one_attached :image
 
   has_many :dataset_positions, dependent: :destroy
+  has_one :dataset_quality, dependent: :destroy
 
   after_create_commit :save_digest
 
