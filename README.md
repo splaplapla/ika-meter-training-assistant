@@ -40,3 +40,7 @@ be rails r Build.execute
 # トレーニング
 be rails r Create.execute | sh
 ```
+
+## Links
+* OpenCVでSplatoonのイカ分類器を作ってみた
+  * https://qiita.com/haseshin/items/31fc5b42c4d73b574cd0
