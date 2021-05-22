@@ -1,7 +1,7 @@
 require "fileutils"
 
 class Create
-  SIZE = 40
+  SIZE = 34 # ~ 40までだと判定しやすい
 
   class << self
     def execute(no_cache=false)

@@ -5,6 +5,7 @@ class Dataset < ApplicationRecord
   has_one :dataset_quality, dependent: :destroy
 
   after_create_commit :save_digest
+  before_create :save_digest
 
   def has_dataset_positions?
     dataset_positions.size > 0
@@ -18,5 +19,9 @@ class Dataset < ApplicationRecord
     self.image.blob.open do |f|
       update_columns(digest: Digest::MD5.hexdigest(f.read))
     end
+  end
+
+  def build_dataset_quality
+    build_dataset_quality
   end
 end
