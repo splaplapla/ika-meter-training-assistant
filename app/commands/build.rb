@@ -15,6 +15,9 @@ class Build
 
     files = []
     Dir.glob("#{Rails.root}/lib/assets/negative/**/*").map.with_index(1) do |org_file_path, index|
+      if org_file_path =~ /\/(.+?)\.(png|jpg)/
+        next if $1.start_with?("_")
+      end
       mat = OpenCV::CvMat.load(org_file_path)
       if mat.width == 1920 && mat.height == 1080
         mat = Crop.ikatako_meter(mat)
