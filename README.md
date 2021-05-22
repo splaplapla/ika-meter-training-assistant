@@ -52,8 +52,15 @@ or
 be rails r "Create.execute true" | sh
 ```
 
-* IGNORE_LOW_SAMPLES=true, size:44だと検出できなかった
 * IGNORE_LOW_SAMPLES=true, size:40だと検出できた
+* IGNORE_LOW_SAMPLES=true, size:42だと検出できたが、若干過剰に検出されている
+* IGNORE_LOW_SAMPLES=true, size:44だと検出できなかった
+* IGNORE_LOW_SAMPLES=false, size:40だと検出まったくできない
+* IGNORE_LOW_SAMPLES=false, size:42だと検出まったくできない
+* IGNORE_LOW_SAMPLES=false, size:44だと検出は低いけど誤検知は相変わらずある
+* IGNORE_LOW_SAMPLES=false, size:46だと検出はいい感じ。誤検知はすくない。この設定でデータ収集するとよさそう
+* IGNORE_LOW_SAMPLES=false, size:47だと検出はすごく少ない. 誤検知は少ない
+* IGNORE_LOW_SAMPLES=false, size:48だと検出は低いが、検出率が低い
 
 ## Links
 * OpenCVでSplatoonのイカ分類器を作ってみた
