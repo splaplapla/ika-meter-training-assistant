@@ -37,6 +37,29 @@ Dir.glob("#{Rails.root}/lib/assets/20210521/*jpg").map.with_index(1) do |filenam
 end
 ```
 
+### モデルを使って画像を取り込む
+```ruby
+detector = OpenCV::CvHaarClassifierCascade::load("/Users/koji/src/ika-meter-training-assistant/tmp/model/cascade.xml")
+Dir.glob("#{Rails.root}/lib/assets/2/*jpg").map.with_index(1).first do |filename, index|
+  file = File.open(filename)
+  digest = Digest::MD5.hexdigest(file.read)
+  if Dataset.find_by(digest: digest)
+    Rails.logger.warn "skip!!!!!!!!!"
+  else
+    image = OpenCV::CvMat.load(filename).copy
+    croped_image = Crop.ikatako_meter_with_padding(image)
+    name = "#{Time.now.tap { |x| break "#{x.to_i}#{x.usec}" }}.jpg"
+    file.rewind
+    ActiveRecord::Base.transaction do
+      dataset = Dataset.create!(image: { io: file, filename: name }, digest: digest )
+      detector.detect_objects(croped_image).each do |rect|
+        dataset.dataset_temporary_positions.create!(x: rect.top_left.x + 450, y: rect.top_left.y, width: rect.bottom_right.x - rect.top_left.x, height: rect.bottom_right.y)
+      end
+    end
+  end
+end
+```
+
 ### opencv_createsamples に食わせるために出力する
 /Users/koji/src/ika-meter-traincascade
 

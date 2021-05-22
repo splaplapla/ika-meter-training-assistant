@@ -10,7 +10,7 @@
 <script>
   $(function() {
     loadJcrop(
-     JSON.parse('<%= @dataset.dataset_positions.map(&:point).to_json.html_safe %>')
+     JSON.parse('<%= @dataset_points.html_safe %>')
     );
   })
 </script>

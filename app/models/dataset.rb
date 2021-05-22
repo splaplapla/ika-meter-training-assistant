@@ -2,10 +2,13 @@ class Dataset < ApplicationRecord
   has_one_attached :image
 
   has_many :dataset_positions, dependent: :destroy
+  has_many :dataset_temporary_positions, dependent: :destroy
+
   has_one :dataset_quality, dependent: :destroy
+  has_one :dataset_temp, dependent: :destroy
 
   after_create_commit :save_digest
-  before_create :save_digest
+  before_create :build_dataset_quality
 
   def has_dataset_positions?
     dataset_positions.size > 0
@@ -22,6 +25,6 @@ class Dataset < ApplicationRecord
   end
 
   def build_dataset_quality
-    build_dataset_quality
+    build_dataset_quality(status: :normal)
   end
 end

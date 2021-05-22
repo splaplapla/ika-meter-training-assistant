@@ -1,6 +1,11 @@
-<%= link_to "全部", datasets_path %>
-<%= link_to "入力済み", datasets_path(dataset_positions: :has) %>
-<%= link_to "未入力", datasets_path(dataset_positions: :none) %>
+<div>
+  <%= link_to "全部", datasets_path %>
+  <%= link_to "入力済み", datasets_path(dataset_positions: :has) %>
+  <%= link_to "未入力", datasets_path(dataset_positions: :none) %>
+</div>
+<div>
+  <%= link_to "仮入力の一覧", datasets_path(dataset_positions: :temporary) %>
+</div>
 
 <table border="1">
   <tr>
@@ -24,6 +29,3 @@
     </tr>
   <% end %>
 </table>
-
-<script>
-</script>

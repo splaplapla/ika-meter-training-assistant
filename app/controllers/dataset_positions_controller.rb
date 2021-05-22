@@ -5,6 +5,7 @@ class DatasetPositionsController < ApplicationController
     @dataset = Dataset.find(params[:dataset_id])
     ActiveRecord::Base.transaction do
       @dataset.dataset_positions.delete_all
+      @dataset.dataset_temporary_positions.delete_all
       params[:positions].split(/,/).each_slice(4).map do |point|
         @dataset.dataset_positions.create!(x: point[0], y: point[1], width: point[2], height: point[3])
       end
