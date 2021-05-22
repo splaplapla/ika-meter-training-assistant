@@ -1,12 +1,16 @@
 require "fileutils"
 
 class Create
+  SIZE = 40
+
   class << self
-    def execute
-      puts "/opt/homebrew/opt/opencv@2/bin/opencv_createsamples -info positive.dat -vec positive.vec -w 100 -h 100 -num 2000"
-      # FileUtils.rm_rf "tmp/model"
-      # FileUtils.mkdir_p "tmp/model"
-      puts "/opt/homebrew/opt/opencv@3/bin/opencv_traincascade -data tmp/model -vec positive.vec -bg negative.dat -numPos #{num_pos} -numNeg #{num_neg} -w 100 -h 100 -baseFormatSave"
+    def execute(no_cache: false)
+      puts "/opt/homebrew/opt/opencv@2/bin/opencv_createsamples -info positive.dat -vec positive.vec -w #{SIZE} -h #{SIZE} -num 2000"
+      if no_cache
+        FileUtils.rm_rf "tmp/model"
+        FileUtils.mkdir_p "tmp/model"
+      end
+      puts "/opt/homebrew/opt/opencv@3/bin/opencv_traincascade -data tmp/model -vec positive.vec -bg negative.dat -numPos #{num_pos} -numNeg #{num_neg} -w #{SIZE} -h #{SIZE} -baseFormatSave"
     end
 
     private
