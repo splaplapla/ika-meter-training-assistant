@@ -13,7 +13,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'mysql2'
 gem 'pry'
 
-group :process do
+group :trainer do
   gem 'ruby-opencv', require: 'opencv' # cropする部分でしか使っていない
 end
 

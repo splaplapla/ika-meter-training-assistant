@@ -14,6 +14,12 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
 mysqldump -uroot training_assistant_development > db/dump.sql
 ```
 
+リストア
+
+```shell
+cat db/dump.sql| mysql -uroot training_assistant_development
+```
+
 ### 画像を取り込む
 
 ```ruby
