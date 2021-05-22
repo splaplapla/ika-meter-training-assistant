@@ -44,3 +44,8 @@ be rails r Create.execute | sh
 ## Links
 * OpenCVでSplatoonのイカ分類器を作ってみた
   * https://qiita.com/haseshin/items/31fc5b42c4d73b574cd0
+* opencv_traincascade についての説明が書いている
+  * https://rest-term.com/archives/3131/
+  * https://www.pro-s.co.jp/blog/system/opencv/6471
+* 仏像顔分類器
+  * https://midoriit.com/2017/10/%e7%9f%b3%e4%bb%8f%e7%94%a8%e9%a1%94%e6%a4%9c%e5%87%ba%e5%99%a8%e3%81%ae%e4%bd%9c%e6%88%90.html
