@@ -14,10 +14,11 @@ class Build
     Dir.glob("./tmp/data/neg/*.jpg").map { |filepath| FileUtils.rm filepath }
 
     files = []
-    Dir.glob("#{Rails.root}/lib/assets/negative/**/*.jpg").map.with_index(1) do |org_file_path, index|
+    Dir.glob("#{Rails.root}/lib/assets/negative/**/*").map.with_index(1) do |org_file_path, index|
       mat = OpenCV::CvMat.load(org_file_path)
-      mat = Crop.ikatako_meter(mat)
-
+      if mat.width == 1920 && mat.height == 1080
+        mat = Crop.ikatako_meter(mat)
+      end
       dist_file_path = "#{Rails.root}/tmp/data/neg/#{index}.jpg"
       mat.save dist_file_path
       # FileUtils.cp org_file_path, filepath
@@ -36,7 +37,7 @@ class Build
     # .where(dataset_qualities: { status: :normal })
     # 品質をカットしてデータを出力できる
     datasets = Dataset.where(ignore: false).joins(:dataset_positions, :dataset_quality).includes(:dataset_positions).with_attached_image.distinct
-    if ENV["IGNORE_LOW_QUOLITIES"]
+    if ENV["IGNORE_LOW_SAMPLES"]
       datasets = datasets.where(dataset_qualities: { status: :normal })
     end
     datasets.each.with_index(1) do |dataset, index|

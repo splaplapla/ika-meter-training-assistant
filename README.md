@@ -5,8 +5,9 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
 * webpackerを後で頑張る
   * https://patorash.hatenablog.com/entry/2020/07/02/165320
   * https://github.com/webpack-contrib/expose-loader
-* 出力するサンプルデータをイカメーターに絞る
-* ika-meter-traincascade の変更を取り込む
+* negative画像を充実させる
+  * バツマーク, ピンチマークあたり
+
 
 ## 運用
 ### データはリポジトリに全部保管するのでダンプする
@@ -42,10 +43,17 @@ end
 ```ruby
 # DBからpositive.datを生成
 be rails r Build.execute
+# or
+IGNORE_LOW_SAMPLES=true be rails r Build.execute
 
 # トレーニング
 be rails r Create.execute | sh
+or
+be rails r "Create.execute true" | sh
 ```
+
+* IGNORE_LOW_SAMPLES=true, size:44だと検出できなかった
+* IGNORE_LOW_SAMPLES=true, size:40だと検出できた
 
 ## Links
 * OpenCVでSplatoonのイカ分類器を作ってみた
