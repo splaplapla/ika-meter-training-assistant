@@ -10,6 +10,16 @@ class DatasetPositionsController < ApplicationController
         @dataset.dataset_positions.create!(x: point[0], y: point[1], width: point[2], height: point[3])
       end
     end
-    head :ok
+
+    if params[:dataset_positions]&.start_with? 'temporary'
+      next_dataset = Dataset.joins(:dataset_temporary_positions).where("datasets.id > ?", @dataset.id).first
+      if next_dataset
+        render json: { next_dataset_id: next_dataset.id }
+      else
+        render json: {}
+      end
+    else
+      render json: {}
+    end
   end
 end

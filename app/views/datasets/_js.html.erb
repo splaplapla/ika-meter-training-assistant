@@ -21,12 +21,17 @@ function saveCrops() {
   const positionParams = Array.from(jcrop.crops).map(function(crop) {
       return [crop.pos.x, crop.pos.y, crop.pos.w, crop.pos.h]
   })
-  const path = '<%= "/datasets/#{@dataset.id}/dataset_positions" %>'
+  const path = '<%= "/datasets/#{@dataset.id}/dataset_positions?dataset_positions=#{params[:dataset_positions]}" %>'
   const XHR = new XMLHttpRequest(), fd = new FormData();
   fd.append("positions", positionParams)
   XHR.addEventListener('load', function(event) {
-    // alert('保存に成功しました。');
-      window.location = "/datasets?dataset_positions=<%= params[:dataset_positions] %>";
+    let json = JSON.parse(this.response);
+    if(json.next_dataset_id) {
+      window.location = `/datasets/${json.next_dataset_id}?dataset_positions=<%= params[:dataset_positions] %>`;
+    } else {
+      window.location = `/datasets?dataset_positions=<%= params[:dataset_positions] %>`;
+    }
+    return false;
   });
   XHR.addEventListener('error', function(event) {
     alert('保存に失敗しました');
