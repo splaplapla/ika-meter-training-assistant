@@ -95,3 +95,7 @@ be rails r "Create.execute true" | sh
   * https://midoriit.com/2017/10/%e7%9f%b3%e4%bb%8f%e7%94%a8%e9%a1%94%e6%a4%9c%e5%87%ba%e5%99%a8%e3%81%ae%e4%bd%9c%e6%88%90.html
 * OpenCVリファレンス
   * http://opencv.jp/opencv-1.0.0/document/opencvref_cv_detection.html
+* 分類器を造ってみた記事
+  * https://qiita.com/takanorimutoh/items/5bd88f3d17239a147581
+* イカちゃんを物体検知した yolo
+  * https://qiita.com/knyrc/items/b57a40a4291fbd870c98
