@@ -6,6 +6,11 @@
 <div>
   <%= link_to "仮入力の一覧", datasets_path(dataset_positions: :temporary) %>
 </div>
+<div>
+  登録数: <%= Dataset.count %>,
+  入力登録数: <%= Dataset.distinct.joins(:dataset_positions).count %>,
+  仮入力登録数: <%= Dataset.distinct.joins(:dataset_temporary_positions).count %>
+</div>
 
 <table border="1">
   <tr>
