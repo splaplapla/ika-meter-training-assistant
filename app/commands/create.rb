@@ -5,7 +5,7 @@ class Create
 
   class << self
     def execute(no_cache=false)
-      puts "/opt/homebrew/opt/opencv@2/bin/opencv_createsamples -info positive.dat -vec positive.vec -w #{SIZE} -h #{SIZE} -num 2000"
+      puts "/opt/homebrew/opt/opencv@2/bin/opencv_createsamples -info positive.dat -vec positive.vec -w #{SIZE} -h #{SIZE} -num 2000 -maxxangle 1.0 -maxyangle 1.0"
       if no_cache
         FileUtils.rm_rf "tmp/model"
         FileUtils.mkdir_p "tmp/model"
