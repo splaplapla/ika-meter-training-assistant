@@ -43,7 +43,7 @@ class Build
     if ENV["IGNORE_LOW_SAMPLES"]
       datasets = datasets.where(dataset_qualities: { status: :normal })
     end
-    datasets.each.with_index(1) do |dataset, index|
+    datasets.find_each(batch_size: 400) do |dataset, index|
       org_file_path = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
       mat = OpenCV::CvMat.load(org_file_path)
       mat = Crop.ikatako_meter(mat)

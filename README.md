@@ -99,3 +99,5 @@ be rails r "Create.execute true" | sh
   * https://qiita.com/takanorimutoh/items/5bd88f3d17239a147581
 * イカちゃんを物体検知した yolo
   * https://qiita.com/knyrc/items/b57a40a4291fbd870c98
+* featureType
+  * https://qiita.com/kenmaro/items/1b5f23187cc46b4f28c0

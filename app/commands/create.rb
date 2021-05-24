@@ -1,16 +1,21 @@
 require "fileutils"
 
 class Create
-  SIZE = 46 # 一旦これで
+  WIDTH_SIZE = 58 # real: 59
+  HEIGHT_SIZE = 69 #  # real: 70
 
   class << self
     def execute(no_cache=false)
-      puts "/opt/homebrew/opt/opencv@2/bin/opencv_createsamples -info positive.dat -vec positive.vec -w #{SIZE} -h #{SIZE} -num 20000"
+      # puts "/opt/homebrew/opt/opencv@2/bin/opencv_createsamples -info positive.dat -vec positive.vec -w #{SIZE} -h #{SIZE} -num 20000"
+      # puts "/opt/homebrew/opt/opencv@2/bin/opencv_createsamples -info positive.dat -vec positive.vec -w #{SIZE} -h #{SIZE} -num 20000 -maxxangle 0 -maxyangle 0 -maxzangle 0"
+      puts "/opt/homebrew/opt/opencv@2/bin/opencv_createsamples -info positive.dat -vec positive.vec -w #{WIDTH_SIZE} -h #{HEIGHT_SIZE} -num 20000"
       if no_cache
         FileUtils.rm_rf "tmp/model"
         FileUtils.mkdir_p "tmp/model"
       end
-      puts "/opt/homebrew/opt/opencv@3/bin/opencv_traincascade -data tmp/model -vec positive.vec -bg negative.dat -numPos #{num_pos} -numNeg #{num_neg} -w #{SIZE} -h #{SIZE} -baseFormatSave"
+
+      # puts "/opt/homebrew/opt/opencv@3/bin/opencv_traincascade -data tmp/model -vec positive.vec -bg negative.dat -numPos #{num_pos} -numNeg #{num_neg} -w #{WIDTH_SIZE} -h #{HEIGHT_SIZE} -mode BASIC -numThreads 4 -bt DAB -maxFalseAlarmRate 0.1 -minHitRate 0.97 -precalcValBufSize 3048 -precalcIdxBufSize 3048 -featureType LBP"
+      puts "/opt/homebrew/opt/opencv@3/bin/opencv_traincascade -data tmp/model -vec positive.vec -bg negative.dat -numPos #{num_pos} -numNeg #{num_neg} -w #{WIDTH_SIZE} -h #{HEIGHT_SIZE} -baseFormatSave -mode BASIC -numThreads 4 -bt DAB -maxFalseAlarmRate 0.1 -minHitRate 0.97 -precalcValBufSize 4048 -precalcIdxBufSize 4048"
     end
 
     private
