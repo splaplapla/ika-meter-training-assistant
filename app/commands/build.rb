@@ -40,7 +40,7 @@ class Build
     # .where(dataset_qualities: { status: :normal })
     # 品質をカットしてデータを出力できる
     datasets = Dataset.where(ignore: false).joins(:dataset_positions, :dataset_quality).includes(:dataset_positions).with_attached_image.distinct
-    if ENV["IGNORE_LOW_SAMPLES"]
+    if ENV["IGNORE_LOW_SAMPLES"] == "true"
       datasets = datasets.where(dataset_qualities: { status: :normal })
     end
     datasets.each.with_index(1) do |dataset, index|
