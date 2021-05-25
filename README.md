@@ -75,7 +75,23 @@ or
 be rails r "Create.execute true" | sh
 ```
 
-* IGNORE_LOW_SAMPLES=false, size:36でそこそこ検出できた
+* samples: 1281
+  * IGNORE_LOW_SAMPLES=false, size:8はちょっとだけ
+  * IGNORE_LOW_SAMPLES=false, size:9でなし
+  * IGNORE_LOW_SAMPLES=false, size:10でなし
+  * IGNORE_LOW_SAMPLES=false, size:11でなし
+  * IGNORE_LOW_SAMPLES=false, size:12でなし
+  * IGNORE_LOW_SAMPLES=false, size:13はそこそこ
+  * IGNORE_LOW_SAMPLES=false, size:14でなし
+  * IGNORE_LOW_SAMPLES=false, size:15でなし
+  * IGNORE_LOW_SAMPLES=false, size:16すごくいい
+  * IGNORE_LOW_SAMPLES=false, size:17でなし
+  * IGNORE_LOW_SAMPLES=false, size:18でそこそこ検出できる
+  * IGNORE_LOW_SAMPLES=false, size:19でちょっと検出できる
+  * IGNORE_LOW_SAMPLES=false, size:20で検出できない
+  * IGNORE_LOW_SAMPLES=false, size:21ですくないが検出できた
+  * IGNORE_LOW_SAMPLES=false, size:23でそこそこ検出できた
+  * IGNORE_LOW_SAMPLES=false, size:36でそこそこ検出できた
 
 ## Links
 * OpenCVでSplatoonのイカ分類器を作ってみた
