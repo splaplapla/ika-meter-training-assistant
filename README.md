@@ -37,10 +37,12 @@ Dir.glob("#{Rails.root}/lib/assets/20210521/*jpg").map.with_index(1) do |filenam
 end
 ```
 
-### モデルを使って画像を取り込む
+### 分類器を使って画像を取り込む
 ```ruby
+min = OpenCV::CvSize.new(64, 64)
+scale_factor = 1.1
 detector = OpenCV::CvHaarClassifierCascade::load("/Users/koji/src/ika-meter-training-assistant/tmp/model/cascade.xml")
-Dir.glob("#{Rails.root}/lib/assets/2/*jpg").map.with_index(1) do |filename, index|
+Dir.glob("#{Rails.root}/lib/assets/20210523_1/*jpg").map do |filename|
   file = File.open(filename)
   digest = Digest::MD5.hexdigest(file.read)
   if Dataset.find_by(digest: digest)
@@ -52,7 +54,7 @@ Dir.glob("#{Rails.root}/lib/assets/2/*jpg").map.with_index(1) do |filename, inde
     file.rewind
     ActiveRecord::Base.transaction do
       dataset = Dataset.create!(image: { io: file, filename: name }, digest: digest )
-      detector.detect_objects(croped_image).each do |rect|
+      detector.detect_objects(croped_image, min_size: min, min_neighbors: 11, scale_factor: scale_factor).each do |rect|
         dataset.dataset_temporary_positions.create!(x: rect.top_left.x + 450, y: rect.top_left.y, width: rect.bottom_right.x - rect.top_left.x, height: rect.bottom_right.y)
       end
     end
