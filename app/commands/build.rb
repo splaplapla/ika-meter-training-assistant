@@ -37,13 +37,12 @@ class Build
     Dir.glob("tmp/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
 
     files = []
-    # .where(dataset_qualities: { status: :normal })
     # 品質をカットしてデータを出力できる
     datasets = Dataset.where(ignore: false).joins(:dataset_positions, :dataset_quality).includes(:dataset_positions).with_attached_image.distinct
     if ENV["IGNORE_LOW_SAMPLES"]
       datasets = datasets.where(dataset_qualities: { status: :normal })
     end
-    datasets.find_each(batch_size: 400) do |dataset, index|
+    datasets.find_each(batch_size: 400) do |dataset|
       org_file_path = ActiveStorage::Blob.service.send(:path_for, dataset.image.key)
       mat = OpenCV::CvMat.load(org_file_path)
       mat = Crop.ikatako_meter(mat)

@@ -101,3 +101,8 @@ be rails r "Create.execute true" | sh
   * https://qiita.com/knyrc/items/b57a40a4291fbd870c98
 * featureType
   * https://qiita.com/kenmaro/items/1b5f23187cc46b4f28c0
+* たちぶんるい
+  * https://yoshoku.hatenablog.com/entry/2017/10/01/083028
+  * https://github.com/yoshoku/rumale
+* いぬねこ
+  * https://qiita.com/hitomatagi/items/883770046de5746a5deb
