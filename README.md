@@ -83,7 +83,11 @@ be rails r "Create.execute true" | sh
   * IGNORE_LOW_SAMPLES=false, size:18はそこそこ
   * IGNORE_LOW_SAMPLES=false, size:19はそこそこだけど、誤検知がめだつ
   * IGNORE_LOW_SAMPLES=false, size:20はほぼ完璧。ピンチにかかっていた
-  * IGNORE_LOW_SAMPLES=false, size:21は
+  * IGNORE_LOW_SAMPLES=false, size:21はわるい
+  * IGNORE_LOW_SAMPLES=false, size:22はかなり正確. 22よりはちょっと足りないけど誤検知はなかった
+  * IGNORE_LOW_SAMPLES=false, size:23は検出が少ないが誤検知はなかった
+  * IGNORE_LOW_SAMPLES=false, size:24はわるくない。誤検知はなかった
+  * IGNORE_LOW_SAMPLES=false, size:25は2つ足りなかったけどかなり正確。誤検知はなかった
 
 * samples: 1281
   * IGNORE_LOW_SAMPLES=false, size:8はちょっとだけ
