@@ -92,6 +92,8 @@ be rails r "Create.execute true" | sh
   * size:30はなし
   * size:31はかなり低い
   * size:32は誤検知も目立つが、そこそこいいのでは
+  * size:33はかなり低い
+  * size:34は結構検知されたけど、誤検知も目立つ
 
 * samples: 2289
   * IGNORE_LOW_SAMPLES=false, size:16

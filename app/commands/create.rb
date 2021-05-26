@@ -1,8 +1,8 @@
 require "fileutils"
 
 class Create
-  WIDTH_SIZE = 32
-  HEIGHT_SIZE = 32
+  WIDTH_SIZE = 34
+  HEIGHT_SIZE = 34
 
   class << self
     def execute(no_cache=false)
