@@ -12,13 +12,13 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
 ## 運用
 ### データはリポジトリに全部保管するのでダンプする
 ```shell
-mysqldump -uroot training_assistant_development > db/dump.sql
+bin/dump_db.sh
 ```
 
 リストア
 
 ```shell
-cat db/dump.sql| mysql -uroot training_assistant_development
+bin/restore_db.sh
 ```
 
 ### 画像を取り込む
