@@ -12,13 +12,13 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
 ## 運用
 ### データはリポジトリに全部保管するのでダンプする
 ```shell
-sh bin/dump_db.sh
+bin/dump_db.sh
 ```
 
 リストア
 
 ```shell
-sh bin/restore_db.sh
+bin/restore_db.sh
 ```
 
 ### 画像を取り込む
