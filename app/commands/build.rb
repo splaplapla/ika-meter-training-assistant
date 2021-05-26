@@ -37,8 +37,6 @@ class Build
     Dir.glob("tmp/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
 
     files = []
-    # .where(dataset_qualities: { status: :normal })
-    # 品質をカットしてデータを出力できる
     datasets = Dataset.where(ignore: false).joins(:dataset_positions, :dataset_quality).includes(:dataset_positions).with_attached_image.distinct
     if ENV["IGNORE_LOW_SAMPLES"] == "true"
       datasets = datasets.where(dataset_qualities: { status: :normal })

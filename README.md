@@ -5,8 +5,8 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
 * webpackerを後で頑張る
   * https://patorash.hatenablog.com/entry/2020/07/02/165320
   * https://github.com/webpack-contrib/expose-loader
-* negative画像を充実させる
-  * バツマーク, ピンチマークあたり
+* タイマーとデスマークをマスクする
+* build datをfind_in_batchesにして省メモリ化する
 
 
 ## 運用
@@ -77,6 +77,21 @@ or
 be rails r "Create.execute true" | sh
 ```
 
+* samp;es: 3268
+  * size:16はなし
+  * size:20は少ないけど検出した
+  * size:21はなし
+  * size:22はなし
+  * size:23はなし
+  * size:24は少ないけど検出した
+  * size:25はなし
+  * size:26は検出も多いが、誤判定もおおい
+  * size:27はなし
+  * size:28は誤検知は少ないけど、検出が少し少ない. これをベースにするのはあり
+  * size:29は結構いい. 誤検知はほぼない
+  * size:30はなし
+  * size:31はかなり低い
+
 * samples: 2289
   * IGNORE_LOW_SAMPLES=false, size:16
   * IGNORE_LOW_SAMPLES=false, size:17でなし
@@ -127,3 +142,9 @@ be rails r "Create.execute true" | sh
 * たちぶんるい
   * https://yoshoku.hatenablog.com/entry/2017/10/01/083028
   * https://github.com/yoshoku/rumale
+* http://opencv.jp/opencv-2.2/py/objdetect_cascade_classification.html
+  * パラメータの説明
+* minneighborsの説明
+  * http://workpiles.com/2015/04/opencv-detectmultiscale-minneighbors/
+* scalefactorの説明
+  http://workpiles.com/2015/04/opencv-detectmultiscale-scalefactor/
