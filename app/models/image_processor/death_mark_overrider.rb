@@ -4,7 +4,7 @@ module ImageProcessor
       def self.make
         return @template if @template
         mat = OpenCV::CvMat.load "#{Rails.root}/lib/assets/deatch_mark_source.jpg"
-        origina_ikatako_meter = Crop.ikatako_meter(mat)
+        origina_ikatako_meter = Crop.old_style_ikatako_meter(mat)
         # deatch markのばってんの色
         lower = OpenCV::CvScalar.new(0x5D, 0x5D, 0x5D, 0)
         upper = OpenCV::CvScalar.new(0x6B, 0x6B, 0x6B, 0)
@@ -17,7 +17,7 @@ module ImageProcessor
 
     # @param [OpenCV::CvMat] origina_ikatako_meter
     def initialize(mat)
-      @ikatako_meter = Crop.ikatako_meter(mat)
+      @ikatako_meter = mat
     end
 
     # 後続処理のためにデスアイコンを白く塗りつぶす
@@ -37,8 +37,9 @@ module ImageProcessor
         else
           # 白塗りの範囲を小さくしたい
           # -10しないとマスクしたイカタコが1要素として認識されない。膨張したときに太すぎになってしまう
+          point1 = OpenCV::CvPoint.new(min_point.x - 20, min_point.y - 20)
           point2 = OpenCV::CvPoint.new(min_point.x + DeathMark.template.width + 10, min_point.y + DeathMark.template.height + 20) # 縦なら固定値のハードコードで問題ない
-          @ikatako_meter.rectangle!(min_point, point2, color: OpenCV::CvColor::White, thickness: -1)
+          @ikatako_meter.rectangle!(point1, point2, color: OpenCV::CvColor::White, thickness: -1)
 
           killed_enemies << ((min_point.x)..(point2.x))
         end

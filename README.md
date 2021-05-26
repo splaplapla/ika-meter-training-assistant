@@ -53,6 +53,7 @@ Dir.glob("#{Rails.root}/lib/assets/0526/*jpg").map do |filename|
     name = "#{Time.now.tap { |x| break "#{x.to_i}#{x.usec}" }}.jpg"
     file.rewind
     ActiveRecord::Base.transaction do
+      ImageProcessor::DeathMarkOverrider.new(croped_image).override!
       dataset = Dataset.create!(image: { io: file, filename: name }, digest: digest )
       detector.detect_objects(croped_image, min_size: min, min_neighbors: 11, scale_factor: scale_factor).each do |rect|
         dataset.dataset_temporary_positions.create!(x: rect.top_left.x + 450, y: rect.top_left.y, width: rect.bottom_right.x - rect.top_left.x, height: rect.bottom_right.y)
