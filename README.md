@@ -91,6 +91,7 @@ be rails r "Create.execute true" | sh
   * size:29は結構いい. 誤検知はほぼない
   * size:30はなし
   * size:31はかなり低い
+  * size:32は誤検知も目立つが、そこそこいいのでは
 
 * samples: 2289
   * IGNORE_LOW_SAMPLES=false, size:16
@@ -148,3 +149,7 @@ be rails r "Create.execute true" | sh
   * http://workpiles.com/2015/04/opencv-detectmultiscale-minneighbors/
 * scalefactorの説明
   http://workpiles.com/2015/04/opencv-detectmultiscale-scalefactor/
+* detectMultiScaleの説明
+  * https://qiita.com/FukuharaYohei/items/ec6dce7cc5ea21a51a82
+* 公式
+  * https://docs.opencv.org/master/dc/d88/tutorial_traincascade.html
