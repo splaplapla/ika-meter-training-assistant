@@ -9,10 +9,10 @@ class DbMetadatum < ApplicationRecord
     end
 
     if DbMetadatum.last.dump_completed_at <= will_restore_dump_completed_at
-      puts "ソースコードのDBをリストアしています"
+      puts "ソースコードのDBをリストアしています. LGTM"
       return
     else
-      raise "DBを巻き戻しています"
+      raise "DBを巻き戻しています. リストアはできません。"
     end
   end
 end

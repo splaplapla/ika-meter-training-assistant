@@ -248,6 +248,32 @@ INSERT INTO `datasets` VALUES (1,'2021-05-17 13:52:19.255166','2021-05-19 03:21:
 UNLOCK TABLES;
 
 --
+-- Table structure for table `db_metadata`
+--
+
+DROP TABLE IF EXISTS `db_metadata`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `db_metadata` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `dump_completed_at` datetime NOT NULL,
+  `created_at` datetime(6) NOT NULL,
+  `updated_at` datetime(6) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `db_metadata`
+--
+
+LOCK TABLES `db_metadata` WRITE;
+/*!40000 ALTER TABLE `db_metadata` DISABLE KEYS */;
+INSERT INTO `db_metadata` VALUES (1,'2021-05-26 17:21:26','2021-05-26 08:33:35.487347','2021-05-26 08:33:35.487347'),(2,'2021-05-26 17:21:26','2021-05-26 08:33:36.573334','2021-05-26 08:33:36.573334');
+/*!40000 ALTER TABLE `db_metadata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `roi_templates`
 --
 
@@ -307,4 +333,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-26 17:21:26
+-- Dump completed on 2021-05-26 17:38:17
