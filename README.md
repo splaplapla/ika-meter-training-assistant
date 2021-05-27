@@ -7,6 +7,7 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
   * https://github.com/webpack-contrib/expose-loader
 * タイマーとデスマークをマスクする
 * build datをfind_in_batchesにして省メモリ化する
+* negativeの画像もイカタコメーターのサイズで切り取る
 
 
 ## 運用
@@ -78,7 +79,14 @@ or
 be rails r "Create.execute true" | sh
 ```
 
-* samp;es: 3268
+* samples: 3871
+  * size:28はなし
+  * size:29は検出率が高い. 9割くらいはできてる
+  * size:30はなし
+  * size:31は9割くらいできている
+  * size:32はほぼ完璧に検出できているけど、隣接する誤判定が目立つ
+
+* samples: 3268
   * size:16はなし
   * size:20は少ないけど検出した
   * size:21はなし
