@@ -37,6 +37,7 @@ class Build
     Dir.glob("tmp/data/pos/*.jpg").map { |filepath| FileUtils.rm filepath }
 
     files = []
+    # TODO dataset_positionsが0件の行を削除する
     datasets = Dataset.where(ignore: false).joins(:dataset_positions, :dataset_quality).includes(:dataset_positions).with_attached_image.distinct
     if ENV["IGNORE_LOW_SAMPLES"] == "true"
       datasets = datasets.where(dataset_qualities: { status: :normal })
