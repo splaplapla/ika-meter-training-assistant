@@ -85,6 +85,7 @@ be rails r "Create.execute true" | sh
   * size:30はなし
   * size:31は9割くらいできている
   * size:32はほぼ完璧に検出できているけど、隣接する誤判定が目立つ
+  * size:50は誤判定はそこそこある. 18時間かかった
 
 * samples: 3268
   * size:16はなし
