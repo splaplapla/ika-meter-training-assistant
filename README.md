@@ -43,7 +43,7 @@ end
 min = OpenCV::CvSize.new(64, 64)
 scale_factor = 1.1
 detector = OpenCV::CvHaarClassifierCascade::load("/Users/koji/src/ika-meter-training-assistant/tmp/model/cascade.xml")
-Dir.glob("#{Rails.root}/lib/assets/0530/*jpg").map do |filename|
+Dir.glob("#{Rails.root}/lib/assets/0602-low/*.jpg").map do |filename|
   file = File.open(filename)
   digest = Digest::MD5.hexdigest(file.read)
   if Dataset.find_by(digest: digest)
@@ -56,7 +56,7 @@ Dir.glob("#{Rails.root}/lib/assets/0530/*jpg").map do |filename|
     ActiveRecord::Base.transaction do
       ImageProcessor::DeathMarkOverrider.new(croped_image).override!
       dataset = Dataset.create!(image: { io: file, filename: name }, digest: digest )
-      detector.detect_objects(croped_image, min_size: min, min_neighbors: 10, scale_factor: scale_factor).each do |rect|
+      detector.detect_objects(croped_image, min_size: min, min_neighbors: 5, scale_factor: scale_factor).each do |rect|
         dataset.dataset_temporary_positions.create!(x: rect.top_left.x + 450, y: rect.top_left.y, width: rect.bottom_right.x - rect.top_left.x, height: rect.bottom_right.y)
       end
     end
