@@ -43,7 +43,7 @@ end
 min = OpenCV::CvSize.new(64, 64)
 scale_factor = 1.1
 detector = OpenCV::CvHaarClassifierCascade::load("/Users/koji/src/ika-meter-training-assistant/tmp/model/cascade.xml")
-Dir.glob("#{Rails.root}/lib/assets/0603/*.jpg").map do |filename|
+Dir.glob("#{Rails.root}/lib/assets/0606/*.jpg").map do |filename|
   file = File.open(filename)
   digest = Digest::MD5.hexdigest(file.read)
   if Dataset.find_by(digest: digest)
