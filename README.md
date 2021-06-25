@@ -45,7 +45,7 @@ Dir.glob("#{Rails.root}/lib/assets/20210521/*jpg").map.with_index(1) do |filenam
 end
 ```
 
-### 分類器を使って画像を取り込む
+### このリポジトリで生成した分類器を使って、あらかじめマークした状態で画像を取り込む
 ```ruby
 min = OpenCV::CvSize.new(64, 64)
 scale_factor = 1.1
