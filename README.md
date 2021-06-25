@@ -22,6 +22,7 @@
 * bundle exec rails s
 * ブラウザを開いてマーキングする
 * `bundle exec rails r Build.execute && bundle exec rails r "Create.execute true" | sh`
+* `tmp/model/cascade.xml` を使う
 
 ## 運用
 ### ダンプ
