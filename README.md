@@ -5,7 +5,6 @@
 * webpackerを後で頑張る
   * https://patorash.hatenablog.com/entry/2020/07/02/165320
   * https://github.com/webpack-contrib/expose-loader
-* タイマーとデスマークをマスクする
 * build datをfind_in_batchesにして省メモリ化する
 
 ## 運用
