@@ -1,5 +1,8 @@
 # README
-ラベリング支援WEBアプリです. また、opencv_createsamplesへの入力データも作成します.
+* スプラトゥーン2の試合中に表示されるイカメーターの生存アイコンを検出する、分類器を生成するリポジトリです
+* このリポジトリには、正解要素のマーキングを支援WEBアプリと、opencv_traincascadeへの入力データを生成する機能を同梱しています
+
+![image](https://user-images.githubusercontent.com/1664497/123415991-fc7f4a80-d5f0-11eb-82ba-ca3644dddc90.png)
 
 ## TODO
 * webpackerを後で頑張る
