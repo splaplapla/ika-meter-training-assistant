@@ -2,7 +2,12 @@
 * スプラトゥーン2の試合中に表示されるイカメーターの生存アイコンを検出する、分類器を生成するリポジトリです
 * このリポジトリには、正解要素のマーキングを支援WEBアプリと、opencv_traincascadeへの入力データを生成する機能を同梱しています
 
-![image](https://user-images.githubusercontent.com/1664497/123415991-fc7f4a80-d5f0-11eb-82ba-ca3644dddc90.png)
+![image](https://user-images.githubusercontent.com/1664497/123417849-436e3f80-d5f3-11eb-95dd-14be049cb5de.png)
+![image](https://user-images.githubusercontent.com/1664497/123417642-fab68680-d5f2-11eb-8ddf-3895b52cf0a3.png)
+![image](https://user-images.githubusercontent.com/1664497/123417888-53861f00-d5f3-11eb-8466-a84d2de68b96.png)
+![image](https://user-images.githubusercontent.com/1664497/123417674-04d88500-d5f3-11eb-8475-b44727e1384e.png)
+
+* 実際に生成した分類器の結果です。精度(体感)は80%くらいです。過学習している気がするし、パラメータ調整の試行錯誤が足りない気もする
 
 ## TODO
 * webpackerを後で頑張る
