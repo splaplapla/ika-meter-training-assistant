@@ -1,5 +1,5 @@
 # README
-https://github.com/jiikko/ika-meter-traincascade で使うための学習支援WEBアプリです
+ラベリング支援WEBアプリです. また、opencv_createsamplesへの入力データも作成します.
 
 ## TODO
 * webpackerを後で頑張る
@@ -7,11 +7,9 @@ https://github.com/jiikko/ika-meter-traincascade で使うための学習支援W
   * https://github.com/webpack-contrib/expose-loader
 * タイマーとデスマークをマスクする
 * build datをfind_in_batchesにして省メモリ化する
-* negativeの画像もイカタコメーターのサイズで切り取る
-
 
 ## 運用
-### データはリポジトリに全部保管するのでダンプする
+### ダンプ
 ```shell
 bin/dump_db.sh
 ```
@@ -23,7 +21,6 @@ bin/restore_db.sh
 ```
 
 ### 画像を取り込む
-
 ```ruby
 Dir.glob("#{Rails.root}/lib/assets/20210521/*jpg").map.with_index(1) do |filename, index|
   file = File.open(filename)
@@ -42,7 +39,7 @@ end
 ```ruby
 min = OpenCV::CvSize.new(64, 64)
 scale_factor = 1.1
-detector = OpenCV::CvHaarClassifierCascade::load("/Users/koji/src/ika-meter-training-assistant/tmp/model/cascade.xml")
+detector = OpenCV::CvHaarClassifierCascade::load("#{Rails.root}/ika-meter-training-assistant/tmp/model/cascade.xml")
 Dir.glob("#{Rails.root}/lib/assets/0531/*.jpg").map do |filename|
   file = File.open(filename)
   digest = Digest::MD5.hexdigest(file.read)
@@ -65,76 +62,13 @@ end
 ```
 
 ### opencv_createsamples に食わせるために出力する
-/Users/koji/src/ika-meter-traincascade
-
 ```ruby
 # DBからpositive.datを生成
 be rails r Build.execute
-# or
-IGNORE_LOW_SAMPLES=true be rails r Build.execute
 
 # トレーニング
-be rails r Create.execute | sh
-or
 be rails r "Create.execute true" | sh
 ```
-
-* samples: 3871
-  * size:28はなし
-  * size:29は検出率が高い. 9割くらいはできてる
-  * size:30はなし
-  * size:31は9割くらいできている
-  * size:32はほぼ完璧に検出できているけど、隣接する誤判定が目立つ
-  * size:50は誤判定はそこそこある. 18時間かかった
-
-* samples: 3268
-  * size:16はなし
-  * size:20は少ないけど検出した
-  * size:21はなし
-  * size:22はなし
-  * size:23はなし
-  * size:24は少ないけど検出した
-  * size:25はなし
-  * size:26は検出も多いが、誤判定もおおい
-  * size:27はなし
-  * size:28は誤検知は少ないけど、検出が少し少ない. これをベースにするのはあり
-  * size:29は結構いい. 誤検知はほぼない
-  * size:30はなし
-  * size:31はかなり低い
-  * size:32は誤検知も目立つが、そこそこいいのでは
-  * size:33はかなり低い
-  * size:34は結構検知されたけど、誤検知も目立つ
-
-* samples: 2289
-  * IGNORE_LOW_SAMPLES=false, size:16
-  * IGNORE_LOW_SAMPLES=false, size:17でなし
-  * IGNORE_LOW_SAMPLES=false, size:18はそこそこ
-  * IGNORE_LOW_SAMPLES=false, size:19はそこそこだけど、誤検知がめだつ
-  * IGNORE_LOW_SAMPLES=false, size:20はほぼ完璧。ピンチにかかっていた
-  * IGNORE_LOW_SAMPLES=false, size:21はわるい
-  * IGNORE_LOW_SAMPLES=false, size:22はかなり正確. 22よりはちょっと足りないけど誤検知はなかった
-  * IGNORE_LOW_SAMPLES=false, size:23は検出が少ないが誤検知はなかった
-  * IGNORE_LOW_SAMPLES=false, size:24はわるくない。誤検知はなかった
-  * IGNORE_LOW_SAMPLES=false, size:25は2つ足りなかったけどかなり正確。誤検知はなかった
-  * IGNORE_LOW_SAMPLES=false, size:26は精度は低い。
-
-* samples: 1281
-  * IGNORE_LOW_SAMPLES=false, size:8はちょっとだけ
-  * IGNORE_LOW_SAMPLES=false, size:9でなし
-  * IGNORE_LOW_SAMPLES=false, size:10でなし
-  * IGNORE_LOW_SAMPLES=false, size:11でなし
-  * IGNORE_LOW_SAMPLES=false, size:12でなし
-  * IGNORE_LOW_SAMPLES=false, size:13はそこそこ
-  * IGNORE_LOW_SAMPLES=false, size:14でなし
-  * IGNORE_LOW_SAMPLES=false, size:15でなし
-  * IGNORE_LOW_SAMPLES=false, size:16すごくいい
-  * IGNORE_LOW_SAMPLES=false, size:17でなし
-  * IGNORE_LOW_SAMPLES=false, size:18でそこそこ検出できる
-  * IGNORE_LOW_SAMPLES=false, size:19でちょっと検出できる
-  * IGNORE_LOW_SAMPLES=false, size:20で検出できない
-  * IGNORE_LOW_SAMPLES=false, size:21ですくないが検出できた
-  * IGNORE_LOW_SAMPLES=false, size:23でそこそこ検出できた
-  * IGNORE_LOW_SAMPLES=false, size:36でそこそこ検出できた
 
 ## Links
 * OpenCVでSplatoonのイカ分類器を作ってみた

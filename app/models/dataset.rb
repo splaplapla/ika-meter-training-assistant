@@ -16,7 +16,7 @@ class Dataset < ApplicationRecord
   def r
     min = OpenCV::CvSize.new(64, 64)
     scale_factor = 1.01
-    detector = OpenCV::CvHaarClassifierCascade::load("/Users/koji/src/ika-meter-training-assistant/tmp/model/cascade.xml")
+    detector = OpenCV::CvHaarClassifierCascade::load("#{Rails.root}/ika-meter-training-assistant/tmp/model/cascade.xml")
     filename = ActiveStorage::Blob.service.send(:path_for, self.image.key)
     image = OpenCV::CvMat.load(filename)
     croped_image = Crop.ikatako_meter_with_padding(image)
