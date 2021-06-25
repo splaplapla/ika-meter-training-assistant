@@ -10,6 +10,14 @@
   * https://github.com/webpack-contrib/expose-loader
 * build datをfind_in_batchesにして省メモリ化する
 
+## 使い方
+* bundle install
+* install mysql@5.7
+* リストアする
+* bundle exec rails s
+* ブラウザを開いてマーキングする
+* `bundle exec rails r Build.execute && bundle exec rails r "Create.execute true" | sh`
+
 ## 運用
 ### ダンプ
 ```shell
@@ -63,7 +71,7 @@ Dir.glob("#{Rails.root}/lib/assets/0531/*.jpg").map do |filename|
 end
 ```
 
-### opencv_createsamples に食わせるために出力する
+### cascade.xml を出力する
 ```ruby
 # DBからpositive.datを生成
 be rails r Build.execute
